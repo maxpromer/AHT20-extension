@@ -6,12 +6,16 @@ from math import pow
 
 AHT20_ADDR = 0x38
 
+machine = os.uname().machine
+if ("KidBright32" in machine) or ("KidMotor V4" in machine):
+    i2c1 = I2C(1, scl=Pin(5), sda=Pin(4), freq=400000)
+elif "Mbits" in machine:
+    i2c1 = I2C(0, scl=Pin(21), sda=Pin(22), freq=400000)
+else:
+    i2c1 = I2C(0, scl=Pin(22), sda=Pin(21), freq=400000)
+   
 def read():
     try:
-        if "KidBright32" in os.uname().machine:
-            i2c1 = I2C(1, scl=Pin(5), sda=Pin(4), freq=100000)
-        else:
-            i2c1 = I2C(0, scl=Pin(22), sda=Pin(21), freq=100000)
         i2c1.writeto(AHT20_ADDR, b'\xAC\x33\x00')
         sleep(0.1)
         data = i2c1.readfrom(AHT20_ADDR, 6)
