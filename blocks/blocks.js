@@ -1,7 +1,7 @@
 Blockly.defineBlocksWithJsonArray([
 {
-  "type": "aht20_read",
-  "message0": "AHT20 read %1",
+  "type": "aht10_read",
+  "message0": "AHT10 read %1",
   "args0": [
     {
       "type": "field_dropdown",
