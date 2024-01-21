@@ -1,12 +1,12 @@
 ({
-    name: "AHT20", // Category Name
+    name: "AHT10", // Category Name
     description: "Temperature and Humidity Sensor",
-    author: "INEX",
+    author: "ArmCool",
     category: "Sensors",
     version: "1.0.0",
     icon: "/static/icon.png", // Category icon
     color: "#3498DB", // Category color (recommend some blocks color)
     blocks: [ // Blocks in Category
-        "aht20_read"
+        "aht10_read"
     ]
 });
