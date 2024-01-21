@@ -4,7 +4,7 @@ from time import sleep
 import os
 from math import pow
 
-AHT20_ADDR = 0x38
+AHT10_ADDR = 0x38
 
 machine = os.uname().machine
 if ("KidBright32" in machine) or ("KidMotor V4" in machine):
@@ -16,11 +16,11 @@ else:
    
 def read():
     try:
-        i2c1.writeto(AHT20_ADDR, b'\xAC\x33\x00')
+        i2c1.writeto(AHT10_ADDR, b'\xAC\x33\x00')
         sleep(0.1)
-        data = i2c1.readfrom(AHT20_ADDR, 6)
+        data = i2c1.readfrom(AHT10_ADDR, 6)
         if data[0] & 0x80:
-            i2c1.writeto(AHT20_ADDR, b'\xBE')
+            i2c1.writeto(AHT10_ADDR, b'\xBE')
             sleep(0.1)
             return (-999, -999)
         h = ((data[1] << 12) | (data[2] << 4) | ((data[3] & 0xF0) >> 4)) / pow(2, 20) * 100.0;
